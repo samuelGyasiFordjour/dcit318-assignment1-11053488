@@ -55,6 +55,7 @@ namespace DCIT318Assignment1
             Console.ReadKey();
         }
         
+        
         /// <summary>
         /// Converts a numerical grade to a letter grade
         /// </summary>
