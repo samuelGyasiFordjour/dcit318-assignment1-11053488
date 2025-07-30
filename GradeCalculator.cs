@@ -6,35 +6,52 @@ namespace DCIT318Assignment1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("============ Grade Calculator ============");
-            Console.WriteLine("Enter a numerical grade between 0 and 100:");
+            bool continueProgram = true;
             
-            // Read user input
-            string input = Console.ReadLine();
-            
-            // Try to parse the input as a double
-            double grade;
-            if (double.TryParse(input, out grade))
+            while (continueProgram)
             {
-                // Validate grade range
-                if (grade < 0 || grade > 100)
+                Console.WriteLine("============ Grade Calculator ============");
+                Console.WriteLine("Enter a numerical grade between 0 and 100:");
+                
+                // Read user input
+                string input = Console.ReadLine();
+                
+                // Try to parse the input as a double
+                double grade;
+                if (double.TryParse(input, out grade))
                 {
-                    Console.WriteLine("Error: Grade must be between 0 and 100.");
+                    // Validate grade range
+                    if (grade < 0 || grade > 100)
+                    {
+                        Console.WriteLine("Error: Grade must be between 0 and 100.");
+                    }
+                    else
+                    {
+                        // Determine letter grade
+                        string letterGrade = GetLetterGrade(grade);
+                        Console.WriteLine("Grade: " + grade);
+                        Console.WriteLine("Letter Grade: " + letterGrade);
+                    }
                 }
                 else
                 {
-                    // Determine letter grade
-                    string letterGrade = GetLetterGrade(grade);
-                    Console.WriteLine("Grade: " + grade);
-                    Console.WriteLine("Letter Grade: " + letterGrade);
+                    Console.WriteLine("Error: Please enter a valid numerical grade.");
                 }
-            }
-            else
-            {
-                Console.WriteLine("Error: Please enter a valid numerical grade.");
+                
+                // Ask user if they want to continue
+                Console.WriteLine("\nDo you want to calculate another grade? (y/n): ");
+                string choice = Console.ReadLine().ToLower().Trim();
+                
+                if (choice != "y" && choice != "yes")
+                {
+                    continueProgram = false;
+                    Console.WriteLine("Thank you for using Grade Calculator!");
+                }
+                
+                Console.WriteLine(); // Add blank line for better readability
             }
             
-            Console.WriteLine("\nPress any key to exit...");
+            Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
         }
         
